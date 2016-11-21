@@ -12,4 +12,4 @@
 #' "Hans" %notin% c("Fritz","Rolf", "Reto")
 #'
 #' @export
-`%not in%` <- function (x, table) is.na(match(x, table, nomatch=NA_integer_))
+`%notin%` <- function(x, table) is.na(match(x, table, nomatch=NA_integer_))
