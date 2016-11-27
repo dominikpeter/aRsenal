@@ -13,6 +13,7 @@
 #'
 #' @export
 perm <- function(n, k){
+  stopifnot(is.numeric(x))
   factorial(n)/factorial(n-k)
 
 }

@@ -12,7 +12,10 @@
 #' diff.range(x)
 #'
 #' @export
-diff.range <- function(x) diff(range(x))
+diff.range <- function(x) {
+  stopifnot(is.numeric(x))
+  diff(range(x))
+}
 
 
 #' Variance with option for population variance
@@ -29,6 +32,8 @@ diff.range <- function(x) diff(range(x))
 #'
 #' @export
 var2 <- function(x, sample = TRUE){
+  stopifnot(is.numeric(x))
+
   if (sample)
     return(var(x))
 
@@ -51,6 +56,8 @@ var2 <- function(x, sample = TRUE){
 #'
 #' @export
 sd2 <- function(x, sample = TRUE){
+  stopifnot(is.numeric(x))
+
   if (sample)
     return(sd(x))
 
