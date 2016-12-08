@@ -2,5 +2,9 @@
 
 S3method(diff,range)
 export("%notin%")
+export(StatOutlier)
+export(get_outlier)
+export(perm)
 export(sd2)
+export(stat_outlier)
 export(var2)
