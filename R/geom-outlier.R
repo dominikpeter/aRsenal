@@ -15,8 +15,10 @@ require(ggplot2)
 get_outlier <- function(x) {
   stopifnot(is.vector(x))
 
-  upper <- quantile(x, .75, names = FALSE) + (IQR(x)*1.5)
-  lower <- quantile(x, .75, names = FALSE) - (IQR(x)*1.5)
+  coef <- IQR(x)*1.5
+
+  upper <- quantile(x, .75, names = FALSE) + coef
+  lower <- quantile(x, .25, names = FALSE) - coef
   which(x > upper | x < lower)
 }
 
@@ -33,7 +35,7 @@ get_outlier <- function(x) {
 #'
 #'
 #' @export
-StatOutlier <- ggproto("StatChull", Stat,
+StatOutlier <- ggproto("StatOutlier", Stat,
                      compute_group = function(data, scales) {
                        data[get_outlier(data$y), , drop = FALSE]
                      },
