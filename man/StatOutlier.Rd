@@ -4,7 +4,7 @@
 \name{StatOutlier}
 \alias{StatOutlier}
 \title{get outlir}
-\format{An object of class \code{StatChull} (inherits from \code{Stat}, \code{ggproto}) of length 3.}
+\format{An object of class \code{StatOutlier} (inherits from \code{Stat}, \code{ggproto}) of length 3.}
 \usage{
 StatOutlier
 }

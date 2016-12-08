@@ -4,7 +4,7 @@
 \alias{stat_outlier}
 \title{get outlir}
 \usage{
-stat_outlier(mapping = NULL, data = NULL, geom = "text",
+stat_outlier(mapping = NULL, data = NULL, geom = "point",
   position = "identity", na.rm = FALSE, show.legend = NA,
   inherit.aes = TRUE, ...)
 }

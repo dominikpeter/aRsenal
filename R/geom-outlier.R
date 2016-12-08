@@ -1,4 +1,5 @@
 require(ggplot2)
+
 #' get outlir
 #'
 #' get outlier
@@ -12,16 +13,24 @@ require(ggplot2)
 #'
 #'
 #' @export
-get_outlier <- function(x) {
-  stopifnot(is.vector(x))
+get_outlier <- function(x, y = NULL) {
+  stopifnot(is.vector(x) && (is.vector(y) || is.null(y)))
 
-  coef <- IQR(x)*1.5
+  X <- cbind(x = x, y = y)
 
-  upper <- quantile(x, .75, names = FALSE) + coef
-  lower <- quantile(x, .25, names = FALSE) - coef
-  which(x > upper | x < lower)
+  get_idx_outlier <- function(x) {
+    coef <- IQR(x, na.rm = TRUE)*1.5
+    upper <- quantile(x, .75, names = FALSE) + coef
+    lower <- quantile(x, .25, names = FALSE) - coef
+    which(x > upper | x < lower)
+  }
+
+  idx <- unlist(apply(X, MARGIN = 2, get_idx_outlier))
+  unique(idx)
 }
 
+
+?apply
 #' get outlir
 #'
 #' get outlier
@@ -37,10 +46,10 @@ get_outlier <- function(x) {
 #' @export
 StatOutlier <- ggproto("StatOutlier", Stat,
                      compute_group = function(data, scales) {
-                       data[get_outlier(data$y), , drop = FALSE]
+                       data[get_outlier(data$x, data$y), , drop = FALSE]
                      },
 
-                     required_aes = c("y")
+                     required_aes = c("x", "y")
 )
 
 
@@ -57,7 +66,7 @@ StatOutlier <- ggproto("StatOutlier", Stat,
 #'
 #'
 #' @export
-stat_outlier <- function(mapping = NULL, data = NULL, geom = "text",
+stat_outlier <- function(mapping = NULL, data = NULL, geom = "point",
                        position = "identity", na.rm = FALSE, show.legend = NA,
                        inherit.aes = TRUE, ...) {
   layer(
@@ -67,7 +76,52 @@ stat_outlier <- function(mapping = NULL, data = NULL, geom = "text",
   )
 }
 
+#' get outlir
+#'
+#' get outlier
+#'
+#' @param x vector or NULL
+#'
+#' @return none
+#'
+#' @examples
+#'
+#'
+#'
+#' @export
+geom_name_outlier <- function(mapping = NULL, data = NULL,
+                       position = position_stack(1.08), na.rm = FALSE, show.legend = NA,
+                       inherit.aes = TRUE, ...) {
+  layer(
+    stat = StatOutlier, geom = GeomText, data = data, mapping = mapping,
+    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+    params = list(na.rm = na.rm, ...)
+  )
+}
 
+
+#' get outlir
+#'
+#' get outlier
+#'
+#' @param x vector or NULL
+#'
+#' @return none
+#'
+#' @examples
+#'
+#'
+#'
+#' @export
+geom_mark_outlier <- function(mapping = NULL, data = NULL,
+                              position = "identity", na.rm = FALSE, show.legend = NA,
+                              inherit.aes = TRUE, ...) {
+  layer(
+    stat = StatOutlier, geom = GeomPoint, data = data, mapping = mapping,
+    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+    params = list(na.rm = na.rm, ...)
+  )
+}
 
 
 
