@@ -63,6 +63,13 @@ stat_outlier <- function(mapping = NULL, data = NULL, geom = "point",
 #'  ylim(0, 340) +
 #'  theme(panel.background = element_rect(color = "#F0F1F5"))
 #'
+#'mtcars %>%
+#'ggplot(aes(x = factor(cyl), y = hp, label = rownames(.))) +
+#'  geom_boxplot(fill = "#1BA39C", alpha = .6) +
+#'  geom_name_outlier(size = 4, vjust = -1.2) +
+#'  geom_mark_outlier(size = 3, color = "#FC575E", alpha = 0.7) +
+#'  xlab("cyl") +
+#'  theme(panel.background = element_rect(color = "#F0F1F5"))
 #'
 #' @export
 geom_name_outlier <- function(mapping = NULL, data = NULL,
@@ -104,6 +111,13 @@ geom_name_outlier <- function(mapping = NULL, data = NULL,
 #'  ylim(0, 340) +
 #'  theme(panel.background = element_rect(color = "#F0F1F5"))
 #'
+#'#'mtcars %>%
+#'ggplot(aes(x = factor(cyl), y = hp, label = rownames(.))) +
+#'  geom_boxplot(fill = "#1BA39C", alpha = .6) +
+#'  geom_name_outlier(size = 4, vjust = -1.2) +
+#'  geom_mark_outlier(size = 3, color = "#FC575E", alpha = 0.7) +
+#'  xlab("cyl") +
+#'  theme(panel.background = element_rect(color = "#F0F1F5"))
 #'
 #' @export
 geom_mark_outlier <- function(mapping = NULL, data = NULL,
