@@ -2,11 +2,10 @@
 % Please edit documentation in R/geom-outlier.R
 \name{geom_name_outlier}
 \alias{geom_name_outlier}
-\title{name outlier}
+\title{geom name outlier}
 \usage{
-geom_name_outlier(mapping = NULL, data = NULL,
-  position = position_stack(1.07), na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, ...)
+geom_name_outlier(mapping = NULL, data = NULL, position = "identity",
+  na.rm = FALSE, show.legend = NA, inherit.aes = TRUE, ...)
 }
 \arguments{
 \item{x}{aes}
@@ -19,10 +18,31 @@ name outlier in ggplot plot
 }
 \examples{
 mtcars \%>\%
-ggplot(aes(x = factor(cyl), y = hp, label = rownames(.))) +
- geom_boxplot() +
- geom_name_outlier(size = 4)
+ ggplot(aes(x = qsec, y = hp)) +
+ geom_point(color = "#112233", size = 3) +
+ geom_smooth(method = "lm", se = F, color = "#112233", linetype = "dotted") +
+ geom_name_outlier(aes(label = rownames(.)), vjust = -1.2, size = 3) +
+ xlim(14, 23) +
+ ylim(0, 340) +
+ theme(panel.background = element_rect(color = "#F0F1F5"))
 
+mtcars \%>\%
+ggplot(aes(x = qsec, y = hp)) +
+ geom_point(color = "#112233", size = 3) +
+ geom_smooth(method = "lm", se = F, color = "#112233", linetype = 3) +
+ geom_mark_outlier(size = 4, alpha = 0.6, color = "#FC575E") +
+ geom_name_outlier(aes(label = rownames(.)), vjust = -1.2, size = 3) +
+ xlim(14, 23) +
+ ylim(0, 340) +
+ theme(panel.background = element_rect(color = "#F0F1F5"))
+
+mtcars \%>\%
+ggplot(aes(x = factor(cyl), y = hp, label = rownames(.))) +
+ geom_boxplot(fill = "#1BA39C", alpha = .6) +
+ geom_name_outlier(size = 4, vjust = -1.2) +
+ geom_mark_outlier(size = 3, color = "#FC575E", alpha = 0.7) +
+ xlab("cyl") +
+ theme(panel.background = element_rect(color = "#F0F1F5"))
 
 }
 
