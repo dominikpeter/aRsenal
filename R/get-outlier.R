@@ -24,6 +24,10 @@ get_outlier <- function(x, y = NULL) {
   }
   X <- cbind(x, y)
 
-  idx <- unlist(apply(X, MARGIN = 2, get_idx_outlier))
+  idx <- apply(X, MARGIN = 2, get_idx_outlier)
+
+  if (is.list(idx))
+    idx <- unlist(idx)
+
   unique(idx)
 }
