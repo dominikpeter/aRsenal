@@ -1,7 +1,7 @@
 **R**senal
 ================
 
-An Arsenal of useful Functions
+An a**rsenal** of useful functions
 
 Install
 -------
