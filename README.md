@@ -1,3 +1,9 @@
-# Rsenal
+**R**senal
+================
 
-An Arsenal of useful functions
+An **arsenal** of useful functions
+
+Install
+-------
+
+> devtools::install\_github('dominikpeter/rsenal')
