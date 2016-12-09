@@ -2,7 +2,6 @@
 
 S3method(diff,range)
 export("%notin%")
-export(StatOutlier)
 export(geom_mark_outlier)
 export(geom_name_outlier)
 export(get_outlier)

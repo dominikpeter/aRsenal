@@ -2,22 +2,26 @@
 % Please edit documentation in R/geom-outlier.R
 \name{geom_mark_outlier}
 \alias{geom_mark_outlier}
-\title{get outlir}
+\title{mark outlier}
 \usage{
 geom_mark_outlier(mapping = NULL, data = NULL, position = "identity",
   na.rm = FALSE, show.legend = NA, inherit.aes = TRUE, ...)
 }
 \arguments{
-\item{x}{vector or NULL}
+\item{x}{aes}
 }
 \value{
-none
+ggplot geom
 }
 \description{
-get outlier
+mark outlier in ggplot plot
 }
 \examples{
-
+mtcars \%>\%
+ ggplot(aes(x = mpg, y = hp)) +
+ geom_point() +
+ geom_smooth(method = "lm", se = F, color = "black", linetype = "dashed") +
+ geom_mark_outlier(shape = 1, size = 4, color = "red")
 
 
 }

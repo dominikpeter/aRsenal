@@ -1,48 +1,7 @@
 require(ggplot2)
 
-#' get outlir
-#'
-#' get outlier
-#'
-#' @param x vector or NULL
-#'
-#' @return none
-#'
-#' @examples
-#'
-#'
-#'
-#' @export
-get_outlier <- function(x, y = NULL) {
-  stopifnot(is.vector(x) && (is.vector(y) || is.null(y)))
-
-  get_idx_outlier <- function(x) {
-    coef <- IQR(x, na.rm = TRUE)*1.5
-    upper <- quantile(x, .75, names = FALSE) + coef
-    lower <- quantile(x, .25, names = FALSE) - coef
-    which(x > upper | x < lower)
-  }
-  X <- cbind(x, y)
-
-  idx <- unlist(apply(X, MARGIN = 2, get_idx_outlier))
-  unique(idx)
-}
 
 
-?apply
-#' get outlir
-#'
-#' get outlier
-#'
-#' @param x vector or NULL
-#'
-#' @return none
-#'
-#' @examples
-#'
-#'
-#'
-#' @export
 StatOutlier <- ggproto("StatOutlier", Stat,
                      compute_group = function(data, scales) {
                        data[get_outlier(data$x, data$y), , drop = FALSE]
@@ -52,13 +11,13 @@ StatOutlier <- ggproto("StatOutlier", Stat,
 )
 
 
-#' get outlir
+#' stat outlier
 #'
-#' get outlier
+#' stat outlier
 #'
-#' @param x vector or NULL
+#' @param x stat
 #'
-#' @return none
+#' @return ggplot stat
 #'
 #' @examples
 #'
@@ -75,21 +34,24 @@ stat_outlier <- function(mapping = NULL, data = NULL, geom = "point",
   )
 }
 
-#' get outlir
+#' name outlier
 #'
-#' get outlier
+#' name outlier in ggplot plot
 #'
-#' @param x vector or NULL
+#' @param x aes
 #'
-#' @return none
+#' @return ggplot geom
 #'
 #' @examples
-#'
+#' mtcars %>%
+#' ggplot(aes(x = factor(cyl), y = hp, label = rownames(.))) +
+#'  geom_boxplot() +
+#'  geom_name_outlier(size = 4)
 #'
 #'
 #' @export
 geom_name_outlier <- function(mapping = NULL, data = NULL,
-                       position = position_stack(1.08), na.rm = FALSE, show.legend = NA,
+                       position = position_stack(1.07), na.rm = FALSE, show.legend = NA,
                        inherit.aes = TRUE, ...) {
   layer(
     stat = StatOutlier, geom = GeomText, data = data, mapping = mapping,
@@ -99,16 +61,20 @@ geom_name_outlier <- function(mapping = NULL, data = NULL,
 }
 
 
-#' get outlir
+#' mark outlier
 #'
-#' get outlier
+#' mark outlier in ggplot plot
 #'
-#' @param x vector or NULL
+#' @param x aes
 #'
-#' @return none
+#' @return ggplot geom
 #'
 #' @examples
-#'
+#'mtcars %>%
+#'  ggplot(aes(x = mpg, y = hp)) +
+#'  geom_point() +
+#'  geom_smooth(method = "lm", se = F, color = "black", linetype = "dashed") +
+#'  geom_mark_outlier(shape = 1, size = 4, color = "red")
 #'
 #'
 #' @export

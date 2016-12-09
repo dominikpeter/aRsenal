@@ -2,23 +2,26 @@
 % Please edit documentation in R/geom-outlier.R
 \name{geom_name_outlier}
 \alias{geom_name_outlier}
-\title{get outlir}
+\title{name outlier}
 \usage{
 geom_name_outlier(mapping = NULL, data = NULL,
-  position = position_stack(1.08), na.rm = FALSE, show.legend = NA,
+  position = position_stack(1.07), na.rm = FALSE, show.legend = NA,
   inherit.aes = TRUE, ...)
 }
 \arguments{
-\item{x}{vector or NULL}
+\item{x}{aes}
 }
 \value{
-none
+ggplot geom
 }
 \description{
-get outlier
+name outlier in ggplot plot
 }
 \examples{
-
+mtcars \%>\%
+ggplot(aes(x = factor(cyl), y = hp, label = rownames(.))) +
+ geom_boxplot() +
+ geom_name_outlier(size = 4)
 
 
 }

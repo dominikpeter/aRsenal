@@ -2,20 +2,20 @@
 % Please edit documentation in R/geom-outlier.R
 \name{stat_outlier}
 \alias{stat_outlier}
-\title{get outlir}
+\title{stat outlier}
 \usage{
 stat_outlier(mapping = NULL, data = NULL, geom = "point",
   position = "identity", na.rm = FALSE, show.legend = NA,
   inherit.aes = TRUE, ...)
 }
 \arguments{
-\item{x}{vector or NULL}
+\item{x}{stat}
 }
 \value{
-none
+ggplot stat
 }
 \description{
-get outlier
+stat outlier
 }
 \examples{
 

@@ -2,22 +2,24 @@
 % Please edit documentation in R/geom-outlier.R
 \name{get_outlier}
 \alias{get_outlier}
-\title{get outlir}
+\title{get outlier}
 \usage{
 get_outlier(x, y = NULL)
 }
 \arguments{
-\item{x}{vector or NULL}
+\item{x}{numeric vector}
+
+\item{y}{numeric vector or NULL}
 }
 \value{
-none
+Numeric Index
 }
 \description{
 get outlier
 }
 \examples{
-
-
+get_outlier(mtcars$mpg, mtcars$hp)
+mtcars[get_outlier(mtcars$mpg, mtcars$hp), ]
 
 }
 
