@@ -31,7 +31,6 @@ nest <- function(x, ...) UseMethod("nest")
 #' @export
 nest.data.table <- function(x, .group) {
   .group = substitute(.group)
-  .name = eval(.name)
   x[, list(data = list(.SD)), keyby = .group]
 }
 
@@ -50,12 +49,28 @@ nest.data.table <- function(x, .group) {
 #'
 #' @export
 nest.data.frame <- function(x, ...) {
-  x <- as.data.table(x, keep.rownames = TRUE)
-  nest(x, ...)
+  tidyr::nest(x, ...)
 
 }
 
 
+#' nest
+#'
+#' nest
+#'
+#' @param x stat
+#'
+#' @return nested data.table
+#'
+#' @examples
+#'
+#'
+#'
+#' @export
+unnest.data.frame <- function(x, ...) {
+  tidyr::unnest(x, ...)
+
+}
 
 
 
