@@ -21,7 +21,13 @@ StatOutlier <- ggproto("StatOutlier", Stat,
 #' @return ggplot stat
 #'
 #' @examples
-#'
+#'mtcars %>%
+#'ggplot(aes(x = qsec, y = hp)) +
+#'  geom_point(color = "#112233", size = 3) +
+#'  geom_smooth(method = "lm", se = F, color = "#112233", linetype = 3) +
+#'  stat_outlier(aes(label = rownames(.)), geom = "text", vjust = -1.2, size = 3) +
+#'  xlim(14, 23) +
+#'  ylim(0, 340)
 #'
 #'
 #' @export
