@@ -14,7 +14,7 @@
 #'
 #' @export
 get_outlier <- function(x, y = NULL) {
-  stopifnot(is.vector(x) && (is.vector(y) || is.null(y)))
+  stopifnot(is.numeric(x) && (is.numeric(y) || is.null(y)))
 
   X <- cbind(x, y)
 
@@ -27,11 +27,17 @@ get_outlier <- function(x, y = NULL) {
 }
 
 
+# get_idx_outlier <- function(x) {
+#   IQR <- 1.5*IQR(x)
+#   upper <- quantile(x, .75, names = FALSE) + IQR
+#   lower <- quantile(x, .25, names = FALSE) - IQR
+#   which(x > upper | x < lower)
+# }
 
 get_idx_outlier <- function(x) {
   IQR <- 1.5*IQR(x)
-  upper <- quantile(x, .75, names = FALSE) + IQR
-  lower <- quantile(x, .25, names = FALSE) - IQR
-  which(x > upper | x < lower)
+  tails <- c(upper = NA, lower = NA)
+  tails[] <- quantile(x, c(.75, .25), names = FALSE) + c(IQR, -IQR)
+  which(x > tails[1] | x < tails[2])
 }
 
