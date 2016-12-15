@@ -31,7 +31,7 @@ StatOutlier <- ggproto("StatOutlier", Stat,
 #'
 #'
 #' @export
-stat_outlier <- function(mapping = NULL, data = NULL, geom = "point",
+stat_outlier <- function(mapping = NULL, data = NULL, geom = "text",
                        position = "identity", na.rm = FALSE, show.legend = NA,
                        inherit.aes = TRUE, ...) {
   layer(
