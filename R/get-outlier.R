@@ -38,7 +38,7 @@ get_idx_outlier <- function(x) {
   IQR <- 1.5*IQR(x)
   tails <- c(upper = .75, lower = .25)
   tails[] <- quantile(x, tails, names = FALSE) + c(IQR, -IQR)
-  which(x > tails[1] | x < tails[2])
+  which(x > tails["upper"] | x < tails["lower"])
 }
 
 
