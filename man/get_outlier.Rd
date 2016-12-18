@@ -4,7 +4,7 @@
 \alias{get_outlier}
 \title{get outlier}
 \usage{
-get_outlier(x, y = NULL)
+get_outlier(x, y = NULL, formula = c("auto", "lm", "loess"))
 }
 \arguments{
 \item{x}{numeric vector}
